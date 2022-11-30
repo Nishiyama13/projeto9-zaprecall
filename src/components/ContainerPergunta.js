@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import seta_virar from "../assets/seta_virar.png";
-
+import icone_certo from "../assets/icone_certo.png";
+import icone_quase from "../assets/icone_quase.png";
+import icone_erro from "../assets/icone_erro.png";
 export default function ContainerPergunta() {
   return (
     <>
@@ -11,9 +13,24 @@ export default function ContainerPergunta() {
         <p>O que é o JSX?</p>
         <img src={seta_virar} alt="" />
       </PerguntaAberta>
+      <PerguntaAberta>
+        <p>JSX é uma sintaxe para escrever HTML dentro do JS </p>
+        <ContainerButtons>
+          <button>Não lembrei</button>
+          <button>Quase nāo lembrei</button>
+          <button>Zap!</button>
+        </ContainerButtons>
+      </PerguntaAberta>
     </>
   );
 }
+
+/* Você vai precisar trocar a cor dos botões e alguns textos!
+  VERDE = "#2FBE34"
+  AMARELO = "#FF922E"
+  VERMELHO = "#FF3030"
+  CINZA = "#333333" 
+*/
 // .pergunta-fechada {}
 const PerguntaFechada = styled.div`
   width: 300px;
@@ -59,5 +76,24 @@ const PerguntaAberta = styled.div`
     position: absolute;
     bottom: 10px;
     right: 10px;
+  }
+`;
+
+const ContainerButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  button {
+    height: 38px;
+    width: 85px;
+    border-radius: 5px;
+    color: white;
+    background-color: red;
+
+    font-family: Recursive;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: center;
   }
 `;
