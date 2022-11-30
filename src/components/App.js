@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import Footer from "./Footer";
 import Logo from "./Logo";
+import ContainerPergunta from "./ContainerPergunta";
+
 export default function App() {
   return (
     <AppContainer>
       <div className="App">
         <Logo className="logo-container" />
       </div>
+      <ContainerPergunta className="pergunta" />
       <Footer />
     </AppContainer>
   );

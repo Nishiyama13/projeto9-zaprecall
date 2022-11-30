@@ -3,7 +3,7 @@ export default function Footer() {
   return (
     <FooterConcluidos>
       {" "}
-      <h2>`0/4 CONCLUÍDOS`</h2>
+      <p>`0/4 CONCLUÍDOS`</p>
     </FooterConcluidos>
   );
 }
