@@ -5,27 +5,38 @@ import icone_quase from "../assets/icone_quase.png";
 import icone_erro from "../assets/icone_erro.png";
 
 export default function FlashCard() {
+  function abrirPergunta() {
+    //trocar visibiliti da PerguntaFechada para hidden
+    //trocar visibiliti da PerguntaAberta para visible
+    alert(`Clicou na pergunta`);
+  }
   return (
     <>
-      <PerguntaFechada>
-        <p>Pergunta 1</p>
-      </PerguntaFechada>
-      <PerguntaAberta>
-        <p>O que é o JSX?</p>
-        <img src={seta_virar} alt="" />
-      </PerguntaAberta>
-      <PerguntaAberta>
-        <p>JSX é uma sintaxe para escrever HTML dentro do JS </p>
-        <ContainerButtons>
-          <button>Não lembrei</button>
-          <button>Quase nāo lembrei</button>
-          <button>Zap!</button>
-        </ContainerButtons>
-      </PerguntaAberta>
+      <Card>
+        <PerguntaFechada onClick={abrirPergunta}>
+          <p>Pergunta 1</p>
+        </PerguntaFechada>
+        <PerguntaAberta>
+          <p>O que é o JSX?</p>
+          <img src={seta_virar} alt="" />
+        </PerguntaAberta>
+        <PerguntaAberta>
+          <p>JSX é uma sintaxe para escrever HTML dentro do JS </p>
+          <ContainerButtons>
+            <button>Não lembrei</button>
+            <button>Quase nāo lembrei</button>
+            <button>Zap!</button>
+          </ContainerButtons>
+        </PerguntaAberta>
+      </Card>
     </>
   );
 }
 
+const Card = styled.li`
+  text-decoration: none;
+  background-color: #ff922e;
+`;
 /* Você vai precisar trocar a cor dos botões e alguns textos!
   VERDE = "#2FBE34"
   AMARELO = "#FF922E"
@@ -44,6 +55,7 @@ const PerguntaFechada = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  visibility: visible; //hidden;
   p {
     font-family: "Recursive";
     font-style: normal;
@@ -73,6 +85,7 @@ const PerguntaAberta = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
+  visibility: visible; //hidden;
   img {
     position: absolute;
     bottom: 10px;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Footer from "./Footer";
-import Logo from "./Logo";
-import ContainerPergunta from "./ContainerPergunta";
+import Footer from "./components/Footer";
+import Logo from "./components/Logo";
+import ContainerPergunta from "./components/ContainerPergunta";
 
 export default function App() {
   return (

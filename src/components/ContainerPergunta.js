@@ -8,7 +8,7 @@ import FlashCard from "./FlashCard";
 export default function ContainerPergunta() {
   return (
     <>
-      <FlashCard></FlashCard>
+      <FlashCard />
     </>
   );
 }

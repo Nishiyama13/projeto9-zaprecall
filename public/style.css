@@ -81,7 +81,7 @@
   border: 1px solid blue;
   padding: 5px;
 }
-
+/*-------
 .pergunta-fechada {
   width: 300px;
   height: 35px;
@@ -103,7 +103,8 @@
   line-height: 19px;
   color: #333333;
 }
-
+-------*/
+/*-----------------
 .pergunta-aberta {
   width: 300px;
   margin: 12px;
@@ -129,3 +130,4 @@
   bottom: 10px;
   right: 10px;
 }
+--------------------*/
