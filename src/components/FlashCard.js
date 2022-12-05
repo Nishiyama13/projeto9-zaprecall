@@ -10,6 +10,14 @@ export default function FlashCard() {
     //trocar visibiliti da PerguntaAberta para visible
     alert(`Clicou na pergunta`);
   }
+  function mostrarResposta() {
+    alert(`Mostar Resposta`);
+  }
+  function addNaoLembro() {
+    alert(` nao lembrou, fazer um setContador +1 nao lembrou`);
+  }
+
+  //Fazer o button mudando o value e cor com .map() pra fazer uma lista
   return (
     <>
       <Card>
@@ -18,12 +26,12 @@ export default function FlashCard() {
         </PerguntaFechada>
         <PerguntaAberta>
           <p>O que é o JSX?</p>
-          <img src={seta_virar} alt="" />
+          <img onClick={mostrarResposta} src={seta_virar} alt="" />
         </PerguntaAberta>
         <PerguntaAberta>
           <p>JSX é uma sintaxe para escrever HTML dentro do JS </p>
           <ContainerButtons>
-            <button>Não lembrei</button>
+            <button onClick={addNaoLembro}>Não lembrei</button>
             <button>Quase nāo lembrei</button>
             <button>Zap!</button>
           </ContainerButtons>
@@ -33,8 +41,7 @@ export default function FlashCard() {
   );
 }
 
-const Card = styled.li`
-  text-decoration: none;
+const Card = styled.div`
   background-color: #ff922e;
 `;
 /* Você vai precisar trocar a cor dos botões e alguns textos!
@@ -55,7 +62,7 @@ const PerguntaFechada = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  visibility: visible; //hidden;
+  //visibility: visible; //hidden;
   p {
     font-family: "Recursive";
     font-style: normal;
