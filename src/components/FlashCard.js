@@ -45,7 +45,7 @@ export default function FlashCard(props) {
     <PerguntaFechada corL={cinza} key={question} onClick={abrirPergunta}>
       <p>Pergunta {id}</p>
       <span>
-        <img src={iconeSetaPlay} alt="" />
+        <img src={iconeSetaPlay} />
       </span>
     </PerguntaFechada>,
   ]);
@@ -53,28 +53,33 @@ export default function FlashCard(props) {
   const respostas = [];
 
   function abrirPergunta() {
-    alert(`Clicou na pergunta`);
+    // alert(`Clicou na pergunta`);
     setDisplayPergunta([
       <PerguntaAberta key={question}>
         <p data-test="flashcard-text">{question}</p>
-        <img onClick={mostrarResposta} src={seta_virar} alt="" />
+        <img
+          onClick={mostrarResposta}
+          data-test="turn-btn"
+          src={seta_virar}
+          alt=""
+        />
       </PerguntaAberta>,
     ]);
     //console.log(`displayAbrirPerguntas ${displayPergunta}`);
   }
   function mostrarResposta() {
-    alert(`Mostrar Resposta`);
+    //alert(`Mostrar Resposta`);
     setDisplayPergunta([
       <PerguntaAberta key={question}>
         <p data-test="flashcard-text">{answer}</p>
         <ContainerButtons>
-          <Botao cor={vermelho} onClick={addNaoLembro}>
+          <Botao data-test="no-btn" cor={vermelho} onClick={addNaoLembro}>
             Não lembrei
           </Botao>
-          <Botao cor={amarelo} onClick={addQuase}>
+          <Botao data-test="partial-btn" cor={amarelo} onClick={addQuase}>
             Quase nāo lembrei
           </Botao>
-          <Botao cor={verde} onClick={addZap}>
+          <Botao data-test="zap-btn" cor={verde} onClick={addZap}>
             Zap!
           </Botao>
         </ContainerButtons>
@@ -87,7 +92,7 @@ export default function FlashCard(props) {
     // alert(` nao lembrou, fazer um setContador +1 nao lembrou`);
     respostas.push("incorreto");
     //console.log(respostas);
-    setNaoLembrei(naoLembrei + 1);
+    //setNaoLembrei(naoLembrei + 1);
     //setCorLetra(vermelho);
     //setIcone(iconeErro);
     finalizarPerguta(vermelho, linha, iconeErro);
@@ -99,7 +104,7 @@ export default function FlashCard(props) {
     // );
     respostas.push("correto");
     //console.log(respostas);
-    setQuase(quase + 1);
+    //setQuase(quase + 1);
     //setCorLetra(amarelo);
     //setIcone(iconeQuase);
     finalizarPerguta(amarelo, linha, iconeQuase);
@@ -118,7 +123,7 @@ export default function FlashCard(props) {
   //Fazer o button mudando o value e cor com .map() pra fazer uma lista
 
   function finalizarPerguta(corLet, linha, iconeAtual) {
-    alert(`nao eh pra poder editar mais`);
+    //alert(`nao eh pra poder editar mais`);
     setDisplayPergunta([
       <PerguntaFechada corL={corLet} key={question} corta={linha}>
         <p data-test="flashcard-text">Pergunta {id}</p>

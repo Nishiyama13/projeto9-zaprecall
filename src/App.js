@@ -25,7 +25,7 @@ export default function App() {
     setNaoLembrei(prev => prev + 1);
   };
 
-  console.log(zap);
+  console.log(zap, quase, naoLembrei);
   console.log(`nao lembro: ${naoLembrei}  quase: ${quase} Zap: ${zap} app`); //contadores
 
   return (
