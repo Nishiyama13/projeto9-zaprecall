@@ -4,26 +4,50 @@ import icone_certo from "../assets/icone_certo.png";
 import icone_quase from "../assets/icone_quase.png";
 import icone_erro from "../assets/icone_erro.png";
 import CORES from "../components/CORES";
+import { useState } from "react";
 
 export default function FlashCard(props) {
   const { deck, naoLembrei, quase, zap, setNaoLembrei, setQuase, setZap } =
     props;
   const { question, answer } = deck;
-  console.log(deck, "FlashCard");
+  //console.log(deck, "FlashCard");
   const cores = CORES;
   //console.log(cores);
+  const [displayPergunta, setDisplayPergunta] = useState([
+    <PerguntaFechada id={question} onClick={abrirPergunta}>
+      <p>Pergunta 1</p>
+    </PerguntaFechada>,
+  ]);
+  console.log(displayPergunta);
   let respostas = [];
 
   function abrirPergunta() {
     alert(`Clicou na pergunta`);
+    setDisplayPergunta([
+      <PerguntaAberta id={question}>
+        <p>{question}</p>
+        <img onClick={mostrarResposta} src={seta_virar} alt="" />
+      </PerguntaAberta>,
+    ]);
+    console.log(`displayAbrirPerguntas ${displayPergunta}`);
   }
   function mostrarResposta() {
     alert(`Mostar Resposta`);
+    setDisplayPergunta([
+      <PerguntaAberta id={question}>
+        <p>{answer}</p>
+        <ContainerButtons>
+          <button onClick={addNaoLembro}>Não lembrei</button>
+          <button onClick={addQuase}>Quase nāo lembrei</button>
+          <button onClick={addZap}>Zap!</button>
+        </ContainerButtons>
+      </PerguntaAberta>,
+    ]);
   }
   function addNaoLembro() {
     alert(` nao lembrou, fazer um setContador +1 nao lembrou`);
     respostas.push("incorreto");
-    console.log(respostas);
+    //console.log(respostas);
     setNaoLembrei(naoLembrei + 1);
   }
   function addQuase() {
@@ -31,36 +55,20 @@ export default function FlashCard(props) {
       `quase nao lembro, setContador +1 quase (no fim contar como correta)`
     );
     respostas.push("correto");
-    console.log(respostas);
+    //console.log(respostas);
     setQuase(quase + 1);
   }
   function addZap() {
     alert(`Zap!!!, setContador +1 zap (correta)`);
     respostas.push("correto");
-    console.log(respostas);
+    //console.log(respostas);
     setZap(zap + 1);
   }
   console.log(respostas);
   //Fazer o button mudando o value e cor com .map() pra fazer uma lista
   return (
     <>
-      <Card>
-        <PerguntaFechada onClick={abrirPergunta}>
-          <p>Pergunta 1</p>
-        </PerguntaFechada>
-        <PerguntaAberta>
-          <p>{question}</p>
-          <img onClick={mostrarResposta} src={seta_virar} alt="" />
-        </PerguntaAberta>
-        <PerguntaAberta>
-          <p>{answer}</p>
-          <ContainerButtons>
-            <button onClick={addNaoLembro}>Não lembrei</button>
-            <button onClick={addQuase}>Quase nāo lembrei</button>
-            <button onClick={addZap}>Zap!</button>
-          </ContainerButtons>
-        </PerguntaAberta>
-      </Card>
+      <Card>{displayPergunta}</Card>
     </>
   );
 }
@@ -161,4 +169,24 @@ const ContainerButtons = styled.div`
   border: 1px solid blue;
   padding: 5px;
 `;
+*/
+
+/*
+<Card>
+        <PerguntaFechada onClick={abrirPergunta}>
+          <p>Pergunta 1</p>
+        </PerguntaFechada>
+        <PerguntaAberta>
+          <p>{question}</p>
+          <img onClick={mostrarResposta} src={seta_virar} alt="" />
+        </PerguntaAberta>
+        <PerguntaAberta>
+          <p>{answer}</p>
+          <ContainerButtons>
+            <button onClick={addNaoLembro}>Não lembrei</button>
+            <button onClick={addQuase}>Quase nāo lembrei</button>
+            <button onClick={addZap}>Zap!</button>
+          </ContainerButtons>
+        </PerguntaAberta>
+      </Card>
 */
