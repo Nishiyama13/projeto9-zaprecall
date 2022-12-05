@@ -44,11 +44,21 @@ export default function FlashCard(props) {
       </PerguntaAberta>,
     ]);
   }
+
+  function finalizarPerguta() {
+    alert(`nao eh pra poder editar mais`);
+    setDisplayPergunta([
+      <PerguntaFechada id={question}>
+        <p>Pergunta 1</p>
+      </PerguntaFechada>,
+    ]);
+  }
   function addNaoLembro() {
     alert(` nao lembrou, fazer um setContador +1 nao lembrou`);
     respostas.push("incorreto");
     //console.log(respostas);
     setNaoLembrei(naoLembrei + 1);
+    finalizarPerguta();
   }
   function addQuase() {
     alert(
@@ -57,12 +67,14 @@ export default function FlashCard(props) {
     respostas.push("correto");
     //console.log(respostas);
     setQuase(quase + 1);
+    finalizarPerguta();
   }
   function addZap() {
     alert(`Zap!!!, setContador +1 zap (correta)`);
     respostas.push("correto");
     //console.log(respostas);
     setZap(zap + 1);
+    finalizarPerguta();
   }
   console.log(respostas);
   //Fazer o button mudando o value e cor com .map() pra fazer uma lista
