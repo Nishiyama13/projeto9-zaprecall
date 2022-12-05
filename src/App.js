@@ -10,17 +10,24 @@ export default function App() {
   const [deck, setDeck] = useState(cardsList);
   console.log(deck);
 
-  const [naoLembrei, setNaoLembrei] = useState(2); //contador esquecidas
-  const [quase, serQuase] = useState(1); //contador migue
-  const [zap, setZap] = useState(1); //contador erros
+  const [naoLembrei, setNaoLembrei] = useState([]); //contador esquecidas
+  const [quase, setQuase] = useState([]); //contador migue
+  const [zap, setZap] = useState([]); //contador erros
   //quase e Zap contar como CORRETOS
 
   return (
     <AppContainer>
-      <div className="App">
-        <Logo className="logo-container" />
-      </div>
-      <ContainerPergunta className="pergunta" />
+      <Logo className="logo-container" />
+      <ContainerPergunta
+        className="pergunta"
+        deck={deck}
+        naoLembrei={naoLembrei}
+        quase={quase}
+        zap={zap}
+        setNaoLembrei={setNaoLembrei}
+        setQuase={setQuase}
+        setZap={setZap}
+      />
       <Footer naoLembrei={naoLembrei} quase={quase} zap={zap} deck={deck} />
     </AppContainer>
   );

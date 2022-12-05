@@ -6,10 +6,24 @@ import styled from "styled-components";
 //import icone_erro from "../assets/icone_erro.png";
 import FlashCard from "./FlashCard";
 
-export default function ContainerPergunta() {
+export default function ContainerPergunta(props) {
+  const { deck, naoLembrei, quase, zap, setNaoLembrei, setQuase, setZap } =
+    props;
+
   return (
     <>
-      <FlashCard />
+      {deck.map(p => (
+        <FlashCard
+          key={deck.question}
+          deck={p}
+          naoLembrei={naoLembrei}
+          quase={quase}
+          zap={zap}
+          setNaoLembrei={setNaoLembrei}
+          setQuase={setQuase}
+          setZap={setZap}
+        />
+      ))}
     </>
   );
 }

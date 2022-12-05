@@ -4,7 +4,11 @@ import icone_certo from "../assets/icone_certo.png";
 import icone_quase from "../assets/icone_quase.png";
 import icone_erro from "../assets/icone_erro.png";
 
-export default function FlashCard() {
+export default function FlashCard(props) {
+  const { deck, naoLembrei, quase, zap, setNaoLembrei, setQuase, setZap } =
+    props;
+  const { question, answer } = deck;
+  console.log(deck);
   function abrirPergunta() {
     //trocar visibiliti da PerguntaFechada para hidden
     //trocar visibiliti da PerguntaAberta para visible
@@ -25,11 +29,11 @@ export default function FlashCard() {
           <p>Pergunta 1</p>
         </PerguntaFechada>
         <PerguntaAberta>
-          <p>O que é o JSX?</p>
+          <p>{question}</p>
           <img onClick={mostrarResposta} src={seta_virar} alt="" />
         </PerguntaAberta>
         <PerguntaAberta>
-          <p>JSX é uma sintaxe para escrever HTML dentro do JS </p>
+          <p>{answer}</p>
           <ContainerButtons>
             <button onClick={addNaoLembro}>Não lembrei</button>
             <button>Quase nāo lembrei</button>
@@ -64,7 +68,7 @@ const PerguntaFechada = styled.div`
   justify-content: space-between;
   //visibility: visible; //hidden;
   p {
-    font-family: "Recursive";
+    font-family: "Recursive", sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -81,7 +85,7 @@ const PerguntaAberta = styled.div`
   background: #ffffd5;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  font-family: "Recursive";
+  font-family: "Recursive", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -110,7 +114,7 @@ const ContainerButtons = styled.div`
     color: white;
     background-color: red;
 
-    font-family: Recursive;
+    font-family: "Recursive", sans-serif;
     font-size: 12px;
     font-weight: 400;
     line-height: 14px;
@@ -118,3 +122,23 @@ const ContainerButtons = styled.div`
     text-align: center;
   }
 `;
+/*
+//container-botoes > button
+const ContainerButtons = styled.div`
+  width: 90px;
+  font-family: "Recursive", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  background: blue;
+  border-radius: 5px;
+  border: 1px solid blue;
+  padding: 5px;
+`;
+*/
