@@ -7,8 +7,18 @@ import styled from "styled-components";
 import FlashCard from "./FlashCard";
 
 export default function ContainerPergunta(props) {
-  const { deck, naoLembrei, quase, zap, setNaoLembrei, setQuase, setZap } =
-    props;
+  const {
+    deck,
+    naoLembrei,
+    quase,
+    zap,
+    setNaoLembrei,
+    setQuase,
+    setZap,
+    addNovoZap,
+    addNovoQuase,
+    addNovoErro,
+  } = props;
 
   return (
     <>
@@ -23,6 +33,9 @@ export default function ContainerPergunta(props) {
           setNaoLembrei={setNaoLembrei}
           setQuase={setQuase}
           setZap={setZap}
+          addNovoZap={addNovoZap}
+          addNovoQuase={addNovoQuase}
+          addNovoErro={addNovoErro}
         />
       ))}
     </>

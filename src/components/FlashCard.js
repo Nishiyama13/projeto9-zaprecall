@@ -8,8 +8,18 @@ import icone_erro from "../assets/icone_erro.png";
 import CORES from "./CORES";
 
 export default function FlashCard(props) {
-  const { deck, naoLembrei, quase, zap, setNaoLembrei, setQuase, setZap } =
-    props;
+  const {
+    deck,
+    naoLembrei,
+    quase,
+    zap,
+    setNaoLembrei,
+    setQuase,
+    setZap,
+    addNovoZap,
+    addNovoQuase,
+    addNovoErro,
+  } = props;
   const { id, question, answer } = deck; //sol temporaria com id
   //console.log(deck, "FlashCard");
   const cores = [...CORES];
@@ -73,7 +83,8 @@ export default function FlashCard(props) {
   }
 
   function addNaoLembro() {
-    alert(` nao lembrou, fazer um setContador +1 nao lembrou`);
+    addNovoErro();
+    // alert(` nao lembrou, fazer um setContador +1 nao lembrou`);
     respostas.push("incorreto");
     //console.log(respostas);
     setNaoLembrei(naoLembrei + 1);
@@ -82,9 +93,10 @@ export default function FlashCard(props) {
     finalizarPerguta(vermelho, linha, iconeErro);
   }
   function addQuase() {
-    alert(
-      `quase nao lembro, setContador +1 quase (no fim contar como correta)`
-    );
+    addNovoQuase();
+    // alert(
+    //   `quase nao lembro, setContador +1 quase (no fim contar como correta)`
+    // );
     respostas.push("correto");
     //console.log(respostas);
     setQuase(quase + 1);
@@ -93,10 +105,11 @@ export default function FlashCard(props) {
     finalizarPerguta(amarelo, linha, iconeQuase);
   }
   function addZap() {
-    alert(`Zap!!!, setContador +1 zap (correta)`);
+    addNovoZap();
+    // alert(`Zap!!!, setContador +1 zap (correta)`);
     respostas.push("correto");
     //console.log(respostas);
-    setZap(zap + 1);
+    // setZap(zap + 1);
     //setCorLetra(verde);
     //setIcone(iconeCerto);
     finalizarPerguta(verde, linha, iconeCerto);

@@ -4,12 +4,7 @@ import CARDS from "./components/mock";
 import Footer from "./components/Footer";
 import Logo from "./components/Logo";
 import ContainerPergunta from "./components/ContainerPergunta";
-import { useState } from "react";
-import seta_play from "./assets/seta_play.png";
-import seta_virar from "./assets/seta_virar.png";
-import icone_certo from "./assets/icone_certo.png";
-import icone_quase from "./assets/icone_quase.png";
-import icone_erro from "./assets/icone_erro.png";
+import { useCallback, useState } from "react";
 
 export default function App() {
   const cardsList = CARDS;
@@ -20,9 +15,19 @@ export default function App() {
   const [quase, setQuase] = useState(0); //contador migue
   const [zap, setZap] = useState(0); //contador acerto
 
-  const [icone, setIcone] = useState([]);
+  const addNovoZap = () => {
+    setZap(prev => prev + 1);
+  };
+  const addNovoQuase = () => {
+    setQuase(prev => prev + 1);
+  };
+  const addNovoErro = () => {
+    setNaoLembrei(prev => prev + 1);
+  };
+
+  console.log(zap);
   console.log(`nao lembro: ${naoLembrei}  quase: ${quase} Zap: ${zap} app`); //contadores
-  console.log(icone);
+
   return (
     <AppContainer>
       <Logo className="logo-container" />
@@ -35,8 +40,9 @@ export default function App() {
         setNaoLembrei={setNaoLembrei}
         setQuase={setQuase}
         setZap={setZap}
-        icone={icone}
-        setIcone={setIcone}
+        addNovoZap={addNovoZap}
+        addNovoQuase={addNovoQuase}
+        addNovoErro={addNovoErro}
       />
       <Footer naoLembrei={naoLembrei} quase={quase} zap={zap} deck={deck} />
     </AppContainer>
