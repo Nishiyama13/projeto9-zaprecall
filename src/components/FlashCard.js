@@ -56,7 +56,7 @@ export default function FlashCard(props) {
     alert(`Clicou na pergunta`);
     setDisplayPergunta([
       <PerguntaAberta key={question}>
-        <p>{question}</p>
+        <p data-test="flashcard-text">{question}</p>
         <img onClick={mostrarResposta} src={seta_virar} alt="" />
       </PerguntaAberta>,
     ]);
@@ -66,7 +66,7 @@ export default function FlashCard(props) {
     alert(`Mostrar Resposta`);
     setDisplayPergunta([
       <PerguntaAberta key={question}>
-        <p>{answer}</p>
+        <p data-test="flashcard-text">{answer}</p>
         <ContainerButtons>
           <Botao cor={vermelho} onClick={addNaoLembro}>
             Não lembrei
@@ -121,7 +121,7 @@ export default function FlashCard(props) {
     alert(`nao eh pra poder editar mais`);
     setDisplayPergunta([
       <PerguntaFechada corL={corLet} key={question} corta={linha}>
-        <p>Pergunta {id}</p>
+        <p data-test="flashcard-text">Pergunta {id}</p>
         <span>
           <img src={iconeAtual} />
         </span>
