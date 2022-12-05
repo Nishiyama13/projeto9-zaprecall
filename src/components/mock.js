@@ -1,4 +1,4 @@
-const cards = [
+const CARDS = [
   { question: "O que é JSX?", answer: "Uma extensão da linguagem JavaScript" },
   {
     question: "O React é __",
@@ -25,4 +25,4 @@ const cards = [
   },
 ];
 
-export default cards;
+export default CARDS;
