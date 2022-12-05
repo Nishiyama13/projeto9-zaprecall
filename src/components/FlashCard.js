@@ -1,20 +1,28 @@
 import styled from "styled-components";
+import { useState } from "react";
 import seta_virar from "../assets/seta_virar.png";
 import icone_certo from "../assets/icone_certo.png";
 import icone_quase from "../assets/icone_quase.png";
 import icone_erro from "../assets/icone_erro.png";
-import CORES from "../components/CORES";
-import { useState } from "react";
+import CORES from "./CORES";
 
 export default function FlashCard(props) {
   const { deck, naoLembrei, quase, zap, setNaoLembrei, setQuase, setZap } =
     props;
   const { question, answer } = deck;
   //console.log(deck, "FlashCard");
-  const cores = CORES;
+  const cores = [...CORES];
+  const verde = "#2FBE34"; //cores.VERDE;
+  const amarelo = "#FF922E"; //cores.AMARELO;
+  const vermelho = "#FF3030"; //cores.VERMELHO;
+  const cinza = "#333333"; //cores.CINZA;
+
+  console.log(
+    `cores em constantes verde:${verde}, amarelo:${amarelo}, vermelho: ${vermelho}`
+  );
   //console.log(cores);
   const [displayPergunta, setDisplayPergunta] = useState([
-    <PerguntaFechada id={question} onClick={abrirPergunta}>
+    <PerguntaFechada key={question} onClick={abrirPergunta}>
       <p>Pergunta 1</p>
     </PerguntaFechada>,
   ]);
@@ -24,7 +32,7 @@ export default function FlashCard(props) {
   function abrirPergunta() {
     alert(`Clicou na pergunta`);
     setDisplayPergunta([
-      <PerguntaAberta id={question}>
+      <PerguntaAberta key={question}>
         <p>{question}</p>
         <img onClick={mostrarResposta} src={seta_virar} alt="" />
       </PerguntaAberta>,
@@ -32,27 +40,25 @@ export default function FlashCard(props) {
     console.log(`displayAbrirPerguntas ${displayPergunta}`);
   }
   function mostrarResposta() {
-    alert(`Mostar Resposta`);
+    alert(`Mostrar Resposta`);
     setDisplayPergunta([
-      <PerguntaAberta id={question}>
+      <PerguntaAberta key={question}>
         <p>{answer}</p>
         <ContainerButtons>
-          <button onClick={addNaoLembro}>Não lembrei</button>
-          <button onClick={addQuase}>Quase nāo lembrei</button>
-          <button onClick={addZap}>Zap!</button>
+          <Botao cor={vermelho} onClick={addNaoLembro}>
+            Não lembrei
+          </Botao>
+          <Botao cor={amarelo} onClick={addQuase}>
+            Quase nāo lembrei
+          </Botao>
+          <Botao cor={verde} onClick={addZap}>
+            Zap!
+          </Botao>
         </ContainerButtons>
       </PerguntaAberta>,
     ]);
   }
 
-  function finalizarPerguta() {
-    alert(`nao eh pra poder editar mais`);
-    setDisplayPergunta([
-      <PerguntaFechada id={question}>
-        <p>Pergunta 1</p>
-      </PerguntaFechada>,
-    ]);
-  }
   function addNaoLembro() {
     alert(` nao lembrou, fazer um setContador +1 nao lembrou`);
     respostas.push("incorreto");
@@ -78,6 +84,15 @@ export default function FlashCard(props) {
   }
   console.log(respostas);
   //Fazer o button mudando o value e cor com .map() pra fazer uma lista
+
+  function finalizarPerguta() {
+    alert(`nao eh pra poder editar mais`);
+    setDisplayPergunta([
+      <PerguntaFechada key={question}>
+        <p>Pergunta 1</p>
+      </PerguntaFechada>,
+    ]);
+  }
   return (
     <>
       <Card>{displayPergunta}</Card>
@@ -86,7 +101,7 @@ export default function FlashCard(props) {
 }
 
 const Card = styled.div`
-  background-color: #ff922e;
+  background-color: AMARELO;
 `;
 /* Você vai precisar trocar a cor dos botões e alguns textos!
   VERDE = "#2FBE34"
@@ -147,12 +162,12 @@ const PerguntaAberta = styled.div`
 const ContainerButtons = styled.div`
   display: flex;
   justify-content: space-between;
-  button {
+  /*button {
     height: 38px;
     width: 85px;
     border-radius: 5px;
     color: white;
-    background-color: red;
+    //background-color: red;
 
     font-family: "Recursive", sans-serif;
     font-size: 12px;
@@ -160,7 +175,22 @@ const ContainerButtons = styled.div`
     line-height: 14px;
     letter-spacing: 0em;
     text-align: center;
-  }
+  }*/
+`;
+
+const Botao = styled.button`
+  height: 38px;
+  width: 85px;
+  border-radius: 5px;
+  color: white;
+  background-color: ${props => props.cor};
+
+  font-family: "Recursive", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
 `;
 /*
 //container-botoes > button

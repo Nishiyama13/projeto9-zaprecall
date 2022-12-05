@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CARDS from "./components/mock";
+//import CORES from "./components/CORES";
 import Footer from "./components/Footer";
 import Logo from "./components/Logo";
 import ContainerPergunta from "./components/ContainerPergunta";
