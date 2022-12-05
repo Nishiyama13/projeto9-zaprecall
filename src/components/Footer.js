@@ -5,9 +5,9 @@ import icone_erro from "../assets/icone_erro.png";
 
 export default function Footer(props) {
   const { naoLembrei, quase, zap, deck } = props;
-  const respondidas = naoLembrei + quase + zap;
+  const respondidas = Number(naoLembrei + quase + zap);
   const totalPerguntas = deck.length;
-  console.log(respondidas, totalPerguntas);
+  console.log(` respondidas? ${respondidas}, totalPerguntas:${totalPerguntas}`);
 
   return (
     <FooterConcluidos>
