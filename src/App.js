@@ -14,7 +14,7 @@ export default function App() {
   const [naoLembrei, setNaoLembrei] = useState(0); //contador esquecidas
   const [quase, setQuase] = useState(0); //contador migue
   const [zap, setZap] = useState(0); //contador acerto
-  console.log(`nao lembro: ${naoLembrei}  quase: ${quase} Zap: ${zap} app`);
+  console.log(`nao lembro: ${naoLembrei}  quase: ${quase} Zap: ${zap} app`); //contadores
 
   return (
     <AppContainer>

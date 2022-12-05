@@ -9,21 +9,22 @@ import CORES from "./CORES";
 export default function FlashCard(props) {
   const { deck, naoLembrei, quase, zap, setNaoLembrei, setQuase, setZap } =
     props;
-  const { question, answer } = deck;
+  const { id, question, answer } = deck; //sol temporaria com id
   //console.log(deck, "FlashCard");
   const cores = [...CORES];
   const verde = "#2FBE34"; //cores.VERDE;
   const amarelo = "#FF922E"; //cores.AMARELO;
   const vermelho = "#FF3030"; //cores.VERMELHO;
   const cinza = "#333333"; //cores.CINZA;
+  //const [corLetra, setCorLetra] = useState(cinza);
 
   console.log(
     `cores em constantes verde:${verde}, amarelo:${amarelo}, vermelho: ${vermelho}`
   );
   //console.log(cores);
   const [displayPergunta, setDisplayPergunta] = useState([
-    <PerguntaFechada key={question} onClick={abrirPergunta}>
-      <p>Pergunta 1</p>
+    <PerguntaFechada corL={cinza} key={question} onClick={abrirPergunta}>
+      <p>Pergunta {id}</p>
     </PerguntaFechada>,
   ]);
   console.log(displayPergunta);
@@ -64,7 +65,8 @@ export default function FlashCard(props) {
     respostas.push("incorreto");
     //console.log(respostas);
     setNaoLembrei(naoLembrei + 1);
-    finalizarPerguta();
+    //setCorLetra(vermelho);
+    finalizarPerguta(vermelho);
   }
   function addQuase() {
     alert(
@@ -73,23 +75,25 @@ export default function FlashCard(props) {
     respostas.push("correto");
     //console.log(respostas);
     setQuase(quase + 1);
-    finalizarPerguta();
+    //setCorLetra(amarelo);
+    finalizarPerguta(amarelo);
   }
   function addZap() {
     alert(`Zap!!!, setContador +1 zap (correta)`);
     respostas.push("correto");
     //console.log(respostas);
     setZap(zap + 1);
-    finalizarPerguta();
+    //setCorLetra(verde);
+    finalizarPerguta(verde);
   }
   console.log(respostas);
   //Fazer o button mudando o value e cor com .map() pra fazer uma lista
 
-  function finalizarPerguta() {
+  function finalizarPerguta(corLet) {
     alert(`nao eh pra poder editar mais`);
     setDisplayPergunta([
-      <PerguntaFechada key={question}>
-        <p>Pergunta 1</p>
+      <PerguntaFechada corL={corLet} key={question}>
+        <p>Pergunta {id}</p>
       </PerguntaFechada>,
     ]);
   }
@@ -128,7 +132,8 @@ const PerguntaFechada = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: #333333;
+    //color: #333333;
+    color: ${props => props.corL};
   }
 `;
 //.pergunta-aberta {}
