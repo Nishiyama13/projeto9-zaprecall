@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import seta_play from "../assets/seta_play.png";
 import seta_virar from "../assets/seta_virar.png";
 import icone_certo from "../assets/icone_certo.png";
 import icone_quase from "../assets/icone_quase.png";
@@ -17,17 +18,26 @@ export default function FlashCard(props) {
   const vermelho = "#FF3030"; //cores.VERMELHO;
   const cinza = "#333333"; //cores.CINZA;
   //const [corLetra, setCorLetra] = useState(cinza);
-
-  console.log(
+  //  const [icone, setIcone] = useState(seta_play);
+  const iconeSetaPlay = seta_play;
+  const iconeSetaVirar = seta_virar;
+  const iconeCerto = icone_certo;
+  const iconeQuase = icone_quase;
+  const iconeErro = icone_erro;
+  // console.log(`certo:${iconeCerto} quase:${iconeQuase} erro:${iconeErro}`);
+  /*console.log(
     `cores em constantes verde:${verde}, amarelo:${amarelo}, vermelho: ${vermelho}`
-  );
+  );*/
   //console.log(cores);
   const [displayPergunta, setDisplayPergunta] = useState([
     <PerguntaFechada corL={cinza} key={question} onClick={abrirPergunta}>
       <p>Pergunta {id}</p>
+      <span>
+        <img src={iconeSetaPlay} alt="" />
+      </span>
     </PerguntaFechada>,
   ]);
-  console.log(displayPergunta);
+  //console.log(displayPergunta);
   let respostas = [];
 
   function abrirPergunta() {
@@ -38,7 +48,7 @@ export default function FlashCard(props) {
         <img onClick={mostrarResposta} src={seta_virar} alt="" />
       </PerguntaAberta>,
     ]);
-    console.log(`displayAbrirPerguntas ${displayPergunta}`);
+    //console.log(`displayAbrirPerguntas ${displayPergunta}`);
   }
   function mostrarResposta() {
     alert(`Mostrar Resposta`);
@@ -66,7 +76,8 @@ export default function FlashCard(props) {
     //console.log(respostas);
     setNaoLembrei(naoLembrei + 1);
     //setCorLetra(vermelho);
-    finalizarPerguta(vermelho);
+    //setIcone(iconeErro);
+    finalizarPerguta(vermelho, iconeErro);
   }
   function addQuase() {
     alert(
@@ -76,7 +87,8 @@ export default function FlashCard(props) {
     //console.log(respostas);
     setQuase(quase + 1);
     //setCorLetra(amarelo);
-    finalizarPerguta(amarelo);
+    //setIcone(iconeQuase);
+    finalizarPerguta(amarelo, iconeQuase);
   }
   function addZap() {
     alert(`Zap!!!, setContador +1 zap (correta)`);
@@ -84,16 +96,20 @@ export default function FlashCard(props) {
     //console.log(respostas);
     setZap(zap + 1);
     //setCorLetra(verde);
-    finalizarPerguta(verde);
+    //setIcone(iconeCerto);
+    finalizarPerguta(verde, iconeCerto);
   }
   console.log(respostas);
   //Fazer o button mudando o value e cor com .map() pra fazer uma lista
 
-  function finalizarPerguta(corLet) {
+  function finalizarPerguta(corLet, iconeAtual) {
     alert(`nao eh pra poder editar mais`);
     setDisplayPergunta([
       <PerguntaFechada corL={corLet} key={question}>
         <p>Pergunta {id}</p>
+        <span>
+          <img src={iconeAtual} />
+        </span>
       </PerguntaFechada>,
     ]);
   }
