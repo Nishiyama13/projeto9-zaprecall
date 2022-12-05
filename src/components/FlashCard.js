@@ -24,6 +24,8 @@ export default function FlashCard(props) {
   const iconeCerto = icone_certo;
   const iconeQuase = icone_quase;
   const iconeErro = icone_erro;
+
+  const linha = "line-through";
   // console.log(`certo:${iconeCerto} quase:${iconeQuase} erro:${iconeErro}`);
   /*console.log(
     `cores em constantes verde:${verde}, amarelo:${amarelo}, vermelho: ${vermelho}`
@@ -38,7 +40,7 @@ export default function FlashCard(props) {
     </PerguntaFechada>,
   ]);
   //console.log(displayPergunta);
-  let respostas = [];
+  const respostas = [];
 
   function abrirPergunta() {
     alert(`Clicou na pergunta`);
@@ -77,7 +79,7 @@ export default function FlashCard(props) {
     setNaoLembrei(naoLembrei + 1);
     //setCorLetra(vermelho);
     //setIcone(iconeErro);
-    finalizarPerguta(vermelho, iconeErro);
+    finalizarPerguta(vermelho, linha, iconeErro);
   }
   function addQuase() {
     alert(
@@ -88,7 +90,7 @@ export default function FlashCard(props) {
     setQuase(quase + 1);
     //setCorLetra(amarelo);
     //setIcone(iconeQuase);
-    finalizarPerguta(amarelo, iconeQuase);
+    finalizarPerguta(amarelo, linha, iconeQuase);
   }
   function addZap() {
     alert(`Zap!!!, setContador +1 zap (correta)`);
@@ -97,15 +99,15 @@ export default function FlashCard(props) {
     setZap(zap + 1);
     //setCorLetra(verde);
     //setIcone(iconeCerto);
-    finalizarPerguta(verde, iconeCerto);
+    finalizarPerguta(verde, linha, iconeCerto);
   }
-  console.log(respostas);
+  console.log(`respostas${respostas}`);
   //Fazer o button mudando o value e cor com .map() pra fazer uma lista
 
-  function finalizarPerguta(corLet, iconeAtual) {
+  function finalizarPerguta(corLet, linha, iconeAtual) {
     alert(`nao eh pra poder editar mais`);
     setDisplayPergunta([
-      <PerguntaFechada corL={corLet} key={question}>
+      <PerguntaFechada corL={corLet} key={question} corta={linha}>
         <p>Pergunta {id}</p>
         <span>
           <img src={iconeAtual} />
@@ -150,6 +152,7 @@ const PerguntaFechada = styled.div`
     line-height: 19px;
     //color: #333333;
     color: ${props => props.corL};
+    text-decoration: ${props => props.corta};
   }
 `;
 //.pergunta-aberta {}
