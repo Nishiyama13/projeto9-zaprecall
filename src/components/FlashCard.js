@@ -3,15 +3,18 @@ import seta_virar from "../assets/seta_virar.png";
 import icone_certo from "../assets/icone_certo.png";
 import icone_quase from "../assets/icone_quase.png";
 import icone_erro from "../assets/icone_erro.png";
+import CORES from "../components/CORES";
 
 export default function FlashCard(props) {
   const { deck, naoLembrei, quase, zap, setNaoLembrei, setQuase, setZap } =
     props;
   const { question, answer } = deck;
-  console.log(deck);
+  console.log(deck, "FlashCard");
+  const cores = CORES;
+  //console.log(cores);
+  let respostas = [];
+
   function abrirPergunta() {
-    //trocar visibiliti da PerguntaFechada para hidden
-    //trocar visibiliti da PerguntaAberta para visible
     alert(`Clicou na pergunta`);
   }
   function mostrarResposta() {
@@ -19,8 +22,25 @@ export default function FlashCard(props) {
   }
   function addNaoLembro() {
     alert(` nao lembrou, fazer um setContador +1 nao lembrou`);
+    respostas.push("incorreto");
+    console.log(respostas);
+    setNaoLembrei(naoLembrei + 1);
   }
-
+  function addQuase() {
+    alert(
+      `quase nao lembro, setContador +1 quase (no fim contar como correta)`
+    );
+    respostas.push("correto");
+    console.log(respostas);
+    setQuase(quase + 1);
+  }
+  function addZap() {
+    alert(`Zap!!!, setContador +1 zap (correta)`);
+    respostas.push("correto");
+    console.log(respostas);
+    setZap(zap + 1);
+  }
+  console.log(respostas);
   //Fazer o button mudando o value e cor com .map() pra fazer uma lista
   return (
     <>
@@ -36,8 +56,8 @@ export default function FlashCard(props) {
           <p>{answer}</p>
           <ContainerButtons>
             <button onClick={addNaoLembro}>Não lembrei</button>
-            <button>Quase nāo lembrei</button>
-            <button>Zap!</button>
+            <button onClick={addQuase}>Quase nāo lembrei</button>
+            <button onClick={addZap}>Zap!</button>
           </ContainerButtons>
         </PerguntaAberta>
       </Card>

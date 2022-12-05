@@ -14,7 +14,7 @@ export default function ContainerPergunta(props) {
     <>
       {deck.map(p => (
         <FlashCard
-          key={deck.question}
+          key={p.question}
           deck={p}
           naoLembrei={naoLembrei}
           quase={quase}

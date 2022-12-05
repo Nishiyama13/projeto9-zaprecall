@@ -8,12 +8,12 @@ import { useState } from "react";
 export default function App() {
   const cardsList = CARDS;
   const [deck, setDeck] = useState(cardsList);
-  console.log(deck);
+  //console.log(deck);
 
-  const [naoLembrei, setNaoLembrei] = useState([]); //contador esquecidas
-  const [quase, setQuase] = useState([]); //contador migue
-  const [zap, setZap] = useState([]); //contador erros
-  //quase e Zap contar como CORRETOS
+  const [naoLembrei, setNaoLembrei] = useState(0); //contador esquecidas
+  const [quase, setQuase] = useState(0); //contador migue
+  const [zap, setZap] = useState(0); //contador acerto
+  console.log(`nao lembro: ${naoLembrei}  quase: ${quase} Zap: ${zap} app`);
 
   return (
     <AppContainer>
